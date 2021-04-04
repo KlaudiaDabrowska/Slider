@@ -35,7 +35,6 @@ const changeSlide = () => {
  changeDot();
 
 }
-setInterval(changeSlide, time)
 
 const changeSlideLeft=()=>{
     active--;
@@ -52,13 +51,18 @@ const changeSlideLeft=()=>{
  changeDot()
 }
 
+let indexInterval= setInterval(changeSlide, time)
+
 const keyChangeSlide = (e) => {
     if(e.keyCode===37){
-        changeSlideLeft()
+        changeSlideLeft();
+        clearInterval(indexInterval);
       }
       else if(e.keyCode===39){
-        changeSlide()
+        changeSlide();
+        clearInterval(indexInterval);
       }
+      indexInterval= setInterval(changeSlide, time);
     }
 
 window.addEventListener('keydown', keyChangeSlide)
